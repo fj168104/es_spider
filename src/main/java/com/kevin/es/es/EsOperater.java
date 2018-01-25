@@ -21,6 +21,7 @@ import java.util.Map;
 /**
  *
  * DELETE ALL:  curl -X DELETE 'http://localhost:9200/mr_index'
+ * GET	  ALL:  curl http://localhost:9200/mr_index/_search
  *
  */
 public class EsOperater {
