@@ -56,7 +56,8 @@ public class EmbedServer {
             response.setStatus(HttpServletResponse.SC_OK);
 
             PrintWriter out = response.getWriter();
-            String sQuery = request.getParameter("sQuery");
+            String sQuery = target.replace("/", "");
+//            String sQuery = request.getParameter("sQuery");
             out.println(searchFromEs(sQuery));
 
             baseRequest.setHandled(true);
@@ -65,10 +66,7 @@ public class EmbedServer {
 
         private String searchFromEs(String sQuery){
             String jsonlist = "";
-//            EsOperater es = new EsOperater();
-//            es.open();
             List<BankData> bankDataList = es.search(sQuery);
-//            es.close();
             ObjectMapper mapper = new ObjectMapper();
             try {
                 jsonlist = mapper.writeValueAsString(bankDataList);
