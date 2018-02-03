@@ -1,5 +1,9 @@
 package com.kevin.es.domain;
 
+import lombok.Builder;
+import lombok.Data;
+import lombok.ToString;
+
 import java.io.Serializable;
 
 /**
@@ -8,6 +12,8 @@ import java.io.Serializable;
  * Created by bysocket on 21/07/2017.
  */
 
+@Data
+@ToString
 public class BankData implements Serializable {
 
     private Long id;
@@ -31,62 +37,41 @@ public class BankData implements Serializable {
 
     private float score;
 
-    public Long getId() {
-        return id;
-    }
+    /**
+     * 格式化信息
+     */
+    //当事人
+    private String partyPerson;
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+    //金融机构名称
+    private String bankName;
 
-    public String getName() {
-        return name;
-    }
+    //法人名称
+    private String holderName;
 
-    public void setName(String name) {
-        this.name = name;
-    }
+    //主要违法违规事实（案由）
+    private String mainCase;
 
-    public String getOriUrl() {
-        return OriUrl;
-    }
+    //行政处罚依据
+    private String according;
 
-    public void setOriUrl(String oriUrl) {
-        OriUrl = oriUrl;
-    }
+    //行政处罚决定
+    private String decision;
 
-    public String getIssueDate() {
-        return issueDate;
-    }
+    //作出处罚决定的机关名称
+    private String orgName;
 
-    public void setIssueDate(String issueDate) {
-        this.issueDate = issueDate;
-    }
 
-    public String getHtmlStr() {
-        return htmlStr;
-    }
 
-    public void setHtmlStr(String htmlStr) {
-        this.htmlStr = htmlStr;
-    }
 
-    public float getScore() {
-        return score;
-    }
-
-    public void setScore(float score) {
-        this.score = score;
-    }
-
-    @Override
-    public String toString() {
-        return "BankData{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", OriUrl=" + OriUrl +
-                ", score=" + score +
-                ", issueDate=" + issueDate +
-                '}';
-    }
+//    @Override
+//    public String toString() {
+//        return "BankData{" +
+//                "id=" + id +
+//                ", name='" + name + '\'' +
+//                ", OriUrl=" + OriUrl +
+//                ", score=" + score +
+//                ", issueDate=" + issueDate +
+//                '}';
+//    }
 }

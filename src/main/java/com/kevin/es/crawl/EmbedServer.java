@@ -56,15 +56,21 @@ public class EmbedServer {
             response.setStatus(HttpServletResponse.SC_OK);
 
             PrintWriter out = response.getWriter();
-            String sQuery = target.replace("/", "");
-//            String sQuery = request.getParameter("sQuery");
-            out.println(searchFromEs(sQuery));
+            String sQuery = "";
 
+            System.out.println(target);
+            if(target.startsWith("/search/")){
+                sQuery = target.replace("/search/", "");
+                out.println(search(sQuery));
+            } else if(target.startsWith("/id/")){
+                sQuery = target.replace("/id/", "");
+                out.println(queryById(sQuery));
+            }
             baseRequest.setHandled(true);
             out.close();
         }
 
-        private String searchFromEs(String sQuery){
+        private String search(String sQuery){
             String jsonlist = "";
             List<BankData> bankDataList = es.search(sQuery);
             ObjectMapper mapper = new ObjectMapper();
@@ -76,5 +82,19 @@ public class EmbedServer {
             }
             return jsonlist;
         }
+
+        private String queryById(String dataId){
+            String json = "";
+            BankData bankData = es.queryById(dataId);
+            ObjectMapper mapper = new ObjectMapper();
+            try {
+                json = mapper.writeValueAsString(bankData);
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return json;
+        }
+
     }
 }

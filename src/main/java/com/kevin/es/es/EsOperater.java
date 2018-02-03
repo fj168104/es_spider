@@ -45,6 +45,13 @@ public class EsOperater {
 		map.put("oriUrl", bankData.getOriUrl());
 		map.put("issueDate", bankData.getIssueDate());
 		map.put("htmlStr", bankData.getHtmlStr());
+		map.put("partyPerson", bankData.getPartyPerson());
+		map.put("bankName", bankData.getBankName());
+		map.put("holderName", bankData.getHolderName());
+		map.put("mainCase", bankData.getMainCase());
+		map.put("according", bankData.getAccording());
+		map.put("decision", bankData.getDecision());
+		map.put("orgName", bankData.getOrgName());
 
 		IndexResponse indexResponse = client.prepareIndex()
 				.setIndex(EsUtils.getIndexName())
@@ -59,11 +66,11 @@ public class EsOperater {
 	
 
 	//查询
-	public BankData queryByName(String Name){
+	public BankData queryById(String dataId){
 		GetResponse getResponse = client.prepareGet()
 				.setIndex(EsUtils.getIndexName())
 				.setType(EsUtils.getTypeName())
-				.setId("1")
+				.setId(dataId)
 				.execute()
 				.actionGet();
 		System.out.println("get="+getResponse.getSourceAsString());
@@ -103,7 +110,14 @@ public class EsOperater {
 		bankData.setOriUrl(String.valueOf(map.get("oriUrl")));
 		bankData.setIssueDate(String.valueOf(map.get("issueDate")));
 		bankData.setHtmlStr(String.valueOf(map.get("htmlStr")));
-		bankData.setScore((Float)map.get("score"));
+		bankData.setScore(map.get("score") == null ? 1.0f:(Float)map.get("score"));
+		bankData.setPartyPerson(String.valueOf(map.get("partyPerson")));
+		bankData.setBankName(String.valueOf(map.get("bankName")));
+		bankData.setHolderName(String.valueOf(map.get("holderName")));
+		bankData.setMainCase(String.valueOf(map.get("mainCase")));
+		bankData.setAccording(String.valueOf(map.get("according")));
+		bankData.setDecision(String.valueOf(map.get("decision")));
+		bankData.setOrgName(String.valueOf(map.get("orgName")));
 		return bankData;
 	}
 
