@@ -13,7 +13,7 @@
                     <archive>
                         <manifest>
                             <!--这里要替换成jar包main方法所在类 -->
-                            <mainClass>com.kevin.es.crawl.EmbedServer</mainClass>
+                            <mainClass>com.kevin.es.crawl.Spider</mainClass>
                         </manifest>
                     </archive>
                     <descriptorRefs>
@@ -29,6 +29,14 @@
                         </goals>
                     </execution>
                 </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
             </plugin>
 
         </plugins>
@@ -131,7 +139,11 @@
             <artifactId>jetty-server</artifactId>
             <version>9.4.2.v20170220</version>
         </dependency>
-
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.16.18</version>
+        </dependency>
 
     </dependencies>
 
