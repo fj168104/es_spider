@@ -1,17 +1,14 @@
 package com.kevin.es.es;
 
 import com.kevin.es.domain.BankData;
-import org.elasticsearch.action.delete.DeleteResponse;
 import org.elasticsearch.action.get.GetResponse;
 import org.elasticsearch.action.index.IndexResponse;
 import org.elasticsearch.action.search.SearchResponse;
-import org.elasticsearch.action.update.UpdateResponse;
 import org.elasticsearch.client.transport.TransportClient;
 import org.elasticsearch.index.query.QueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.search.SearchHit;
 import org.elasticsearch.search.SearchHits;
-import org.elasticsearch.search.sort.SortOrder;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -110,7 +107,7 @@ public class EsOperater {
 		bankData.setOriUrl(String.valueOf(map.get("oriUrl")));
 		bankData.setIssueDate(String.valueOf(map.get("issueDate")));
 		bankData.setHtmlStr(String.valueOf(map.get("htmlStr")));
-		bankData.setScore(map.get("score") == null ? 1.0f:(Float)map.get("score"));
+		bankData.setScore(map.get("score") == null ? 1.0f :(Float)map.get("score"));
 		bankData.setPartyPerson(String.valueOf(map.get("partyPerson")));
 		bankData.setBankName(String.valueOf(map.get("bankName")));
 		bankData.setHolderName(String.valueOf(map.get("holderName")));
