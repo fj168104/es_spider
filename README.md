@@ -10,4 +10,4 @@ com.kevin.es.crawl.EmbedServer 搜索服务，直接执行：
 
 java -jar com.kevin.es.crawl.EmbedServer
 
-启动后可以使用http://localhost:9080?sQuery=keyword 来搜索
+启动后可以使用 http://localhost:9080/search/{sQuery} 来搜索
